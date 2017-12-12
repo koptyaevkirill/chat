@@ -7,14 +7,14 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Login';
+$this->title = Yii::t('app', 'Login');
 ?>
 <div class="grid">
     <?php $form = ActiveForm::begin(['id' => 'login-form', 'options' => ['class' => 'form login']]); ?>
         <?= $form->field($model, 'username', ['options' => ['class' => 'form__field']])->textInput(['class' => 'form__input', 'placeholder' => $model->getAttributeLabel('username')])->label('<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg>') ?>
         <?= $form->field($model, 'password', ['options' => ['class' => 'form__field']])->passwordInput(['class' => 'form__input', 'placeholder' => $model->getAttributeLabel('password')])->label('<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg>') ?>
         <?= $form->field($model, 'rememberMe')->checkbox() ?>
-        <?= Html::submitButton('Login', ['name' => 'login-button']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Login'), ['name' => 'login-button']) ?>
     <?php ActiveForm::end(); ?>
     <p class="text--center">
         Забыли пароль?__ <?= Html::a('reset it', ['site/request-password-reset']) ?>
