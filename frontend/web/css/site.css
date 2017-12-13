@@ -2,21 +2,21 @@
 
 /* helpers/align.css */
 
-.container {
+#content .container {
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-         padding-top: 10%;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-top: 10%;
 }
 
 /* helpers/grid.css */

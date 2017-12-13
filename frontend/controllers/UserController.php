@@ -8,7 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
-use frontend\models\SignupForm;
+use frontend\models\ProfileForm;
 
 /**
  * Site controller
@@ -16,7 +16,7 @@ use frontend\models\SignupForm;
 class UserController extends Controller
 {
     /**
-     * Displays homepage.
+     * Profile update.
      *
      * @return mixed
      */
@@ -25,14 +25,18 @@ class UserController extends Controller
         if (Yii::$app->user->isGuest) {
             $this->goHome();
         }
-        $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->render('profile', [
-                'model' => $model,
-            ]);
+        $model = new ProfileForm(Yii::$app->user->identity);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Your account details have been updated.'));
+                return $this->goHome();
+            } else {
+                Yii::$app->session->setFlash('error', Yii::t('app', 'An error occurred. Please try again later.'));
+            }
         }
+        return $this->render('profile', [
+            'model' => $model,
+        ]);
     }
     
 }
