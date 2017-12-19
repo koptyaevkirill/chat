@@ -10,13 +10,26 @@ use yii\bootstrap\ActiveForm;
 $this->title = Yii::t('app', 'Profile');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<!--<div class="form__field">
+    <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#default_avatar"></use></svg></label>      
+    <label for="uploadbtn" class="uploadButton">Загрузить фото</label>
+    <input style="opacity: 0; z-index: -1;" type="file" name="upload" id="uploadbtn">
+</div>-->
 <div class="grid">
+    <?php if($model->image): ?>
+        <img src="/<?= $model->image?>" id="profile-image" />
+    <?php endif; ?>
     <?php $form = ActiveForm::begin(['id' => 'form-signup', 'options' => ['class' => 'form login']]); ?>
+        <?= $form->field($model, 'image', [
+            'options' => ['class' => 'form__field'],
+            'template' => '{label} <label for="profileform-image" class="uploadButton">Загрузить фото</label>{input}{error}{hint}'
+        ])->fileInput()->label('<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#default_avatar"></use></svg>'); ?>
+        
         <?= $form->field($model, 'username', ['options' => ['class' => 'form__field']])->textInput(['class' => 'form__input', 'placeholder' => $model->getAttributeLabel('username')])->label('<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg>') ?>
         <?= $form->field($model, 'email', ['options' => ['class' => 'form__field']])->textInput(['class' => 'form__input', 'placeholder' => $model->getAttributeLabel('email'), 'disabled' => true])->label('<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use></svg>') ?>
         <?= $form->field($model, 'new_password', ['options' => ['class' => 'form__field']])->passwordInput(['class' => 'form__input', 'placeholder' => $model->getAttributeLabel('new_password')])->label('<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg>') ?>
         <?= $form->field($model, 'current_password', ['options' => ['class' => 'form__field']])->passwordInput(['class' => 'form__input', 'placeholder' => $model->getAttributeLabel('current_password')])->label('<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg>') ?>
-        <?= Html::submitButton(Yii::t('app', 'Save')) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save and switch to chat')) ?>
     <?php ActiveForm::end(); ?>
 </div>
 <svg xmlns="http://www.w3.org/2000/svg" class="icons">

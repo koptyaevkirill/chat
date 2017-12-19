@@ -7,7 +7,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-
+use yii\web\UploadedFile;
 use frontend\models\ProfileForm;
 
 /**
@@ -26,7 +26,9 @@ class UserController extends Controller
             $this->goHome();
         }
         $model = new ProfileForm(Yii::$app->user->identity);
+
         if ($model->load(Yii::$app->request->post())) {
+            $model->image = UploadedFile::getInstance($model, 'image');
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', Yii::t('app', 'Your account details have been updated.'));
                 return $this->goHome();

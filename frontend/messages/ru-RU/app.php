@@ -30,11 +30,12 @@ return [
     'Current password' => 'Текущий пароль',
     'Sign in' => 'Войти',
     'Save' => 'Сохранить',
+    'Save and switch to chat' => 'Сохранить и перейти в чат',
     'Subject' => 'Тема',
     'Submit' => 'Отправить',
     'Logout' => 'Выйти',
     'This username has already been taken.' => 'Это имя пользователя уже существует.',
     'This email address has already been taken.' => 'Этот адрес электронной почты уже существует.',
-    'Your account details have been updated' => 'Настройки аккаунта были изменены',
+    'Your account details have been updated.' => 'Настройки аккаунта были изменены.',
     'An error occurred. Please try again later.' => 'Произошла ошибка. Пожалуйста, попробуйте позже.',
 ];

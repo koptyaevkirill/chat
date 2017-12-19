@@ -200,3 +200,20 @@ p {
 .text--center {
   text-align: center;
 }
+#profile-image {width: 100px;height: 100px;border-radius: 50%;}
+#profileform-image {opacity: 0; z-index: -1;display: none;}
+.uploadButton {
+  display: inline-block;
+  background-color: #ea4c88;
+  color: #eee;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border-radius: 0.25rem;
+  color: inherit;
+  font: inherit;
+  width: 100%;
+  cursor: pointer;
+}
+.uploadButton:hover {
+    background: #3ce;
+}

@@ -23,6 +23,9 @@ class ProfileForm extends Model
     /** @var string */
     public $current_password;
     
+    /** @var string */
+    public $image;
+    
     /** @var User */
     private $_user;
 
@@ -56,6 +59,7 @@ class ProfileForm extends Model
             'newPasswordLength' => ['new_password', 'string', 'max' => 72, 'min' => 6],
             'currentPasswordRequired' => ['current_password', 'required'],
             'currentPasswordValidate' => ['current_password', 'currentPassword'],
+            [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
     }
     
@@ -65,6 +69,7 @@ class ProfileForm extends Model
         $this->setAttributes([
             'username' => $user->username,
             'email' => $user->email,
+            'image' => $user->image,
         ], false);
         parent::__construct($config);
     }
@@ -110,8 +115,27 @@ class ProfileForm extends Model
             if($this->new_password) {
                 $user->setPassword($this->new_password);
             }
+            if($this->image) {
+                $user->image = $this->upload();
+            }
             return $user->save();
         }
         return false;
+    }
+    
+    /**
+     * Saves image to user.
+     *
+     * @return bool
+     */
+    public function upload()
+    {
+        if($this->validate()) {
+            $file_dir = "uploads/{$this->_user->id}.{$this->image->extension}";
+            $this->image->saveAs($file_dir);
+            return $file_dir;
+        } else {
+            return false;
+        }
     }
 }
